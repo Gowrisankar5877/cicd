@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tomcat-deploy
+  name: mockexam-deploy
   labels:
     app: tomcat-cicd
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tomcat-cd
-        image: ashwinprabhub/java-web-app-cicd:latest
+        image: gowri5877/mockexamimg
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
