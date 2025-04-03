@@ -1,15 +1,25 @@
 mvn clean install
-docker build -t java-web-app-cicd:latest .
-if (docker ps -a | grep 'java-web-app-cicd')
+
+docker build -t mockexamimg .
+
+if (docker ps -a | grep 'mockexamimg')
+
 then
-  docker stop java-web-app-cicd
-  docker rm -f java-web-app-cicd
+
+ docker stop mockexamimg
+
+ docker rm -f mockexamimg
+
 fi
-docker run -d -p 8888:8080 --name java-web-app-cicd java-web-app-cicd
-mvn test
-docker login -u <your docker user name> -p <your password>
-docker commit java-web-app-cicd <your docker user name>/java-web-app-cicd:latest
-docker push <your docker user name>/java-web-app-cicd:latest
+
+docker run -d -p 8888:8080 --name mockexamcontainer mockexamimg
+
+docker login -u gowri5877 -p dckr_pat_lqxU0C0s3ooiNfalsekey
+
+docker commit mockexamimg gowri5877/mockexamimgjenkins
+
+docker push gowri5877/mockexamimgjenkins
 
 kubectl delete deploy --all
-kubectl create -f deploy-tomcat.yaml
+
+kubectl create -f deployment.yaml
