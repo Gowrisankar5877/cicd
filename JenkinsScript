@@ -22,4 +22,6 @@ docker push gowri5877/mockexamimgjenkins
 
 kubectl delete deploy --all
 
-kubectl create -f deployment.yaml
+kubectl apply -f deployment.yaml
+
+kubectl apply -f service.yaml
